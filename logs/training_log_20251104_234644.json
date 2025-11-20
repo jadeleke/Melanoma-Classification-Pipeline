@@ -1,0 +1,121 @@
+{
+  "timestamp": "20251104_234644",
+  "config": {
+    "image_size": 256,
+    "batch_size": 8,
+    "num_workers": 4,
+    "model_name": "efficientnet_b3",
+    "pretrained": true,
+    "num_classes": 2,
+    "dropout": 0.3,
+    "model_type": "hybrid",
+    "hrnet": {
+      "model_name": "hrnet_w32",
+      "pretrained": true,
+      "feature_dim": 2048,
+      "freeze_backbone": false
+    },
+    "efficientnet": {
+      "model_name": "efficientnet_b3",
+      "pretrained": true,
+      "feature_dim": 1536,
+      "dropout": 0.3,
+      "freeze_backbone": false
+    },
+    "stylegan": {
+      "enabled": false,
+      "generator_path": null,
+      "synthetic_ratio": 0.2,
+      "latent_dim": 512,
+      "truncation_psi": 0.7,
+      "use_style_mixing": true,
+      "mixing_prob": 0.5
+    },
+    "fusion": {
+      "strategy": "weighted_sum",
+      "initial_weights": [
+        0.5,
+        0.5
+      ],
+      "learnable": true,
+      "hidden_dim": 512,
+      "dropout": 0.5
+    },
+    "woa": {
+      "enabled": true,
+      "n_whales": 20,
+      "max_iter": 30,
+      "optimization_frequency": 5,
+      "start_epoch": 2,
+      "verbose": true
+    },
+    "epochs": 3,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_epochs": 1,
+    "focal_alpha": 0.25,
+    "focal_gamma": 2.0,
+    "label_smoothing": 0.1,
+    "gradient_accumulation": 4,
+    "gradient_clip": 1.0,
+    "mixed_precision": true,
+    "early_stopping_patience": 10,
+    "reduce_lr_patience": 5,
+    "reduce_lr_factor": 0.5,
+    "train_split": 0.8,
+    "val_split": 0.2,
+    "random_seed": 42,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "device": "cuda"
+  },
+  "total_epochs": 3,
+  "best_epoch": 1,
+  "best_val_metric": 0.5,
+  "train_losses": [
+    0.008484968915333185,
+    0.006002192964829653,
+    0.00600219296511085
+  ],
+  "val_losses": [
+    0.005999549964712147,
+    0.005999549964712147,
+    0.005999549964712147
+  ],
+  "fusion_weight_history": [
+    {
+      "hrnet": NaN,
+      "efficientnet": NaN
+    },
+    {
+      "hrnet": NaN,
+      "efficientnet": NaN
+    },
+    {
+      "hrnet": 0.3689929246902466,
+      "efficientnet": 0.6310070753097534
+    }
+  ],
+  "final_metrics": {
+    "accuracy": 0.9823422879565349,
+    "precision": 0.0,
+    "recall": 0.0,
+    "sensitivity": 0.0,
+    "f1": 0.0,
+    "specificity": 1.0,
+    "auc_roc": 0.5,
+    "auc_pr": 0.017657712043465137,
+    "tn": 6509.0,
+    "fp": 0.0,
+    "fn": 117.0,
+    "tp": 0.0
+  }
+}
